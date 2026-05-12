@@ -58,13 +58,14 @@
     padding: 18px 40px; max-width: 1280px; margin: 0 auto;
   }
   .logo {
-    display: flex; align-items: center; gap: 12px;
+    display: flex; align-items: center; gap: 6px;
     font-weight: 700; font-size: 18px; letter-spacing: -0.02em;
   }
   .logo-mark {
-    width: 34px; height: 34px;
+    width: 40px; height: 40px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
+    margin: -4px 0;
   }
   .logo-mark img {
     width: 100%; height: 100%; display: block;
@@ -310,15 +311,18 @@
     background: var(--bg-card);
     border: 1px solid var(--line);
     border-radius: 12px;
-    padding: 24px;
+    overflow: hidden;
     position: sticky; top: 100px;
   }
-  .founder-avatar {
-    width: 64px; height: 64px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--green), var(--green-deep));
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 24px; color: var(--bg);
-    margin-bottom: 20px;
+  .founder-photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--line);
+  }
+  .founder-card-body {
+    padding: 24px;
   }
   .founder-name { font-size: 18px; font-weight: 700; }
   .founder-role {
@@ -434,7 +438,7 @@
       <span class="hero-tag-label">SYS.STATUS</span>
       <span class="hero-tag-text">Foliar live in production · Florabook in development</span>
     </div>
-    <h1>The data infrastructure for the <span class="accent">green industry.</span></h1>
+    <h1>Intelligent tools for the <span class="accent">people who grow.</span></h1>
     <p class="hero-lede">
       Hortomatix builds connected software for horticulture, landscaping, wholesale trade, retail gardening, and professional grounds management. Four products on a shared backbone. One source of truth. A compounding data advantage.
     </p>
@@ -451,13 +455,13 @@
         <span class="terminal-path">~/hortomatix · platform status</span>
       </div>
       <div class="terminal-body">
-        <div class="terminal-line"><span class="prompt">$</span> platform.status()</div>
+        <div class="terminal-line"><span class="prompt">›</span> platform.status()</div>
         <div class="terminal-line"><span class="comment">// returns 4 products across 4 industry layers</span></div>
         <div class="terminal-line"><span class="key">→ foliar</span>     <span class="val">wholesale trade portal</span>           <span style="color:var(--green)">[LIVE]</span></div>
         <div class="terminal-line"><span class="key">→ florabook</span>  <span class="val">consumer plant discovery</span>          <span style="color:var(--amber)">[DEV]</span></div>
-        <div class="terminal-line"><span class="key">→ hortom8</span>    <span class="val">institutional grounds management</span>  <span style="color:var(--green)">[LIVE]</span></div>
+        <div class="terminal-line"><span class="key">→ hortom8</span>    <span class="val">institutional grounds management</span>  <span style="color:var(--amber)">[DEV]</span></div>
         <div class="terminal-line"><span class="key">→ floradex</span>   <span class="val">industry intelligence</span>             <span style="color:var(--ink-mute)">[COMING]</span></div>
-        <div class="terminal-line"><span class="prompt">$</span> <span class="blink"></span></div>
+        <div class="terminal-line"><span class="prompt">›</span> <span class="blink"></span></div>
       </div>
     </div>
   </div>
@@ -520,11 +524,10 @@
         </div>
         <div>
           <div class="product-desc">Intelligence layer for permanent institutional landscapes. Predictive, self-correcting workflows for mowing, irrigation, weather, and operational constraints. Vendor-neutral.</div>
-          <a href="https://app.hortom8.com.au" class="product-link">app.hortom8.com.au</a>
         </div>
         <div class="product-status">
           <div class="product-status-label">STATUS</div>
-          <div class="product-status-val live">LIVE</div>
+          <div class="product-status-val dev">IN DEV</div>
         </div>
         <div class="product-layer">
           <div>LAYER</div>
@@ -587,25 +590,27 @@
     <h2>Built by people who've <span class="glow">done the work.</span></h2>
     <div class="founder-grid">
       <div class="founder-card">
-        <div class="founder-avatar">RC</div>
-        <div class="founder-name">Robert Clark</div>
-        <div class="founder-role">founder &amp; director</div>
-        <div class="founder-stats">
-          <div class="founder-stat">
-            <div class="founder-stat-label">Industry</div>
-            <div class="founder-stat-val">15+ yrs</div>
-          </div>
-          <div class="founder-stat">
-            <div class="founder-stat-label">Based</div>
-            <div class="founder-stat-val">Sydney</div>
-          </div>
-          <div class="founder-stat">
-            <div class="founder-stat-label">Prior</div>
-            <div class="founder-stat-val">Flower Power</div>
-          </div>
-          <div class="founder-stat">
-            <div class="founder-stat-label">Products live</div>
-            <div class="founder-stat-val">02 / 04</div>
+        <img src="/assets/founder-clark-card.jpg" alt="Robert Clark, founder of Hortomatix" class="founder-photo">
+        <div class="founder-card-body">
+          <div class="founder-name">Robert Clark</div>
+          <div class="founder-role">founder &amp; director</div>
+          <div class="founder-stats">
+            <div class="founder-stat">
+              <div class="founder-stat-label">Industry</div>
+              <div class="founder-stat-val">15+ yrs</div>
+            </div>
+            <div class="founder-stat">
+              <div class="founder-stat-label">Based</div>
+              <div class="founder-stat-val">Sydney</div>
+            </div>
+            <div class="founder-stat">
+              <div class="founder-stat-label">Prior</div>
+              <div class="founder-stat-val">Flower Power</div>
+            </div>
+            <div class="founder-stat">
+              <div class="founder-stat-label">Products live</div>
+              <div class="founder-stat-val">01 / 04</div>
+            </div>
           </div>
         </div>
       </div>
