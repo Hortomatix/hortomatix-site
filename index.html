@@ -318,38 +318,31 @@
 
   /* Founder */
   .founder-grid {
-    display: grid; grid-template-columns: 320px 1fr; gap: 80px; align-items: start;
+    display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: start;
   }
   .founder-card {
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-    position: sticky; top: 100px;
+    /* No card background — image and caption sit directly on the page */
   }
   .founder-photo {
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     display: block;
-    border-bottom: 1px solid var(--line);
+    border-radius: 8px;
+    filter: grayscale(100%) contrast(1.05) brightness(0.95);
   }
-  .founder-card-body {
-    padding: 24px;
+  .founder-caption {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
   }
-  .founder-name { font-size: 18px; font-weight: 700; }
-  .founder-role {
+  .founder-caption strong {
+    color: var(--ink); font-weight: 600; display: block; margin-bottom: 2px;
+  }
+  .founder-caption .role {
     font-family: var(--mono); font-size: 12px;
-    color: var(--ink-mute); margin: 4px 0 16px;
+    color: var(--ink-mute);
   }
-  .founder-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); margin-top: 16px; border-radius: 6px; overflow: hidden; }
-  .founder-stat { background: var(--bg-elevated); padding: 10px 12px; }
-  .founder-stat-label {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--ink-mute); text-transform: uppercase;
-    letter-spacing: 0.04em; margin-bottom: 2px;
-  }
-  .founder-stat-val { font-size: 14px; font-weight: 600; }
 
   .founder-body p {
     font-size: 18px; line-height: 1.6; color: var(--ink-soft);
@@ -418,7 +411,7 @@
     .flow-grid { grid-template-columns: 1fr; }
     .flow-arrow { transform: rotate(90deg); }
     .founder-grid { grid-template-columns: 1fr; gap: 32px; }
-    .founder-card { position: static; }
+    .founder-card { max-width: 280px; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
     .footer-bottom { flex-direction: column; gap: 12px; }
   }
@@ -604,35 +597,17 @@
     <div class="founder-grid">
       <div class="founder-card">
         <img src="/assets/founder-clark-card.jpg" alt="Robert Clark, founder of Hortomatix" class="founder-photo">
-        <div class="founder-card-body">
-          <div class="founder-name">Robert Clark</div>
-          <div class="founder-role">founder &amp; director</div>
-          <div class="founder-stats">
-            <div class="founder-stat">
-              <div class="founder-stat-label">Industry</div>
-              <div class="founder-stat-val">15+ yrs</div>
-            </div>
-            <div class="founder-stat">
-              <div class="founder-stat-label">Based</div>
-              <div class="founder-stat-val">Sydney</div>
-            </div>
-            <div class="founder-stat">
-              <div class="founder-stat-label">Prior</div>
-              <div class="founder-stat-val">Flower Power</div>
-            </div>
-            <div class="founder-stat">
-              <div class="founder-stat-label">Products live</div>
-              <div class="founder-stat-val">01 / 04</div>
-            </div>
-          </div>
-        </div>
+        <p class="founder-caption">
+          <strong>Robert Clark</strong>
+          <span class="role">founder &amp; director</span>
+        </p>
       </div>
       <div class="founder-body">
-        <p>Hortomatix was founded by Robert Clark — a landscape gardener and former Flower Power Garden Care franchisee with direct operational experience across every layer of the green industry: institutional grounds, wholesale supply, retail trade, and the working end of a landscape business.</p>
+        <p>Hortomatix was founded by Robert Clark, a landscape gardener with direct operational experience across every layer of the green industry: institutional grounds maintenance, wholesale supply, retail trade, and running a landscaping business.</p>
         <div class="founder-pull">
           We build software the industry actually wants to use, because we've done the work it's designed to support.
         </div>
-        <p>That domain knowledge informs every product decision. <strong>Vendor-neutral integrations, honest commercial terms, platform neutrality as a long-term commitment</strong> — these aren't features bolted on, they're the only way the founder would have built it.</p>
+        <p>That domain knowledge informs every product decision: <strong>features that solve genuine pain points, vendor-neutral integrations, honest commercial terms, and platform neutrality as a long-term commitment.</strong></p>
       </div>
     </div>
   </div>
