@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hortomatix — Software for the green industry</title>
 <meta name="description" content="Hortomatix builds connected software for horticulture, landscaping, wholesale trade, retail gardening, and professional grounds management. Four products on a shared platform.">
-<link rel="icon" type="image/svg+xml" href="/assets/logos/icon-white.svg">
+<link rel="icon" type="image/png" href="/assets/logos/favicon.png">
 
 <!-- Open Graph / social sharing -->
 <meta property="og:type" content="website">
@@ -59,7 +59,7 @@
   }
   .logo {
     display: flex; align-items: center; gap: 6px;
-    font-weight: 700; font-size: 18px; letter-spacing: -0.02em;
+    font-weight: 700; font-size: 22px; letter-spacing: -0.02em;
   }
   .logo-mark {
     width: 40px; height: 40px;
@@ -69,7 +69,11 @@
   }
   .logo-mark img {
     width: 100%; height: 100%; display: block;
-    filter: drop-shadow(0 0 8px rgba(0, 232, 122, 0.35));
+    /* Tint white source icon to brand green, keep the soft glow */
+    filter:
+      brightness(0) saturate(100%)
+      invert(64%) sepia(95%) saturate(450%) hue-rotate(100deg) brightness(102%) contrast(101%)
+      drop-shadow(0 0 8px rgba(0, 232, 122, 0.35));
   }
   .nav-links { display: flex; gap: 32px; font-family: var(--mono); font-size: 13px; font-weight: 500; }
   .nav-links a { color: var(--ink-soft); transition: color 0.15s; }
@@ -250,6 +254,15 @@
   .product-status-val.live::before {
     content: ''; width: 6px; height: 6px; border-radius: 50%;
     background: var(--green); box-shadow: 0 0 6px var(--green);
+  }
+  .product-status-val.beta { color: var(--green); }
+  .product-status-val.beta::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); box-shadow: 0 0 6px var(--green);
+    animation: betaPulse 2s ease-in-out infinite;
+  }
+  @keyframes betaPulse {
+    50% { opacity: 0.4; }
   }
   .product-status-val.dev { color: var(--amber); }
   .product-status-val.dev::before {
@@ -436,7 +449,7 @@
     <div class="hero-tag">
       <span class="hero-tag-dot"></span>
       <span class="hero-tag-label">SYS.STATUS</span>
-      <span class="hero-tag-text">Foliar live in production · Florabook in development</span>
+      <span class="hero-tag-text">Foliar in private beta · Florabook in development</span>
     </div>
     <h1>Intelligent tools for the <span class="accent">people who grow.</span></h1>
     <p class="hero-lede">
@@ -457,7 +470,7 @@
       <div class="terminal-body">
         <div class="terminal-line"><span class="prompt">›</span> platform.status()</div>
         <div class="terminal-line"><span class="comment">// returns 4 products across 4 industry layers</span></div>
-        <div class="terminal-line"><span class="key">→ foliar</span>     <span class="val">wholesale trade portal</span>           <span style="color:var(--green)">[LIVE]</span></div>
+        <div class="terminal-line"><span class="key">→ foliar</span>     <span class="val">wholesale trade portal</span>           <span style="color:var(--green)">[BETA]</span></div>
         <div class="terminal-line"><span class="key">→ florabook</span>  <span class="val">consumer plant discovery</span>          <span style="color:var(--amber)">[DEV]</span></div>
         <div class="terminal-line"><span class="key">→ hortom8</span>    <span class="val">institutional grounds management</span>  <span style="color:var(--amber)">[DEV]</span></div>
         <div class="terminal-line"><span class="key">→ floradex</span>   <span class="val">industry intelligence</span>             <span style="color:var(--ink-mute)">[COMING]</span></div>
@@ -488,7 +501,7 @@
         </div>
         <div class="product-status">
           <div class="product-status-label">STATUS</div>
-          <div class="product-status-val live">LIVE</div>
+          <div class="product-status-val beta">PRIVATE BETA</div>
         </div>
         <div class="product-layer">
           <div>LAYER</div>
