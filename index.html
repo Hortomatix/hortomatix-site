@@ -318,15 +318,14 @@
 
   /* Founder */
   .founder-grid {
-    display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: stretch;
+    display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: start;
   }
   .founder-card {
     display: flex; flex-direction: column;
   }
   .founder-photo {
     width: 100%;
-    flex: 1;
-    min-height: 320px;
+    height: 340px;
     object-fit: cover;
     object-position: center 30%;
     display: block;
@@ -337,7 +336,6 @@
     margin-top: 16px;
     font-size: 14px;
     color: var(--ink-soft);
-    flex-shrink: 0;
   }
   .founder-caption strong {
     color: var(--green); font-weight: 700; display: block; margin-bottom: 2px;
@@ -415,8 +413,8 @@
     .flow-grid { grid-template-columns: 1fr; }
     .flow-arrow { transform: rotate(90deg); }
     .founder-grid { grid-template-columns: 1fr; gap: 32px; align-items: start; }
-    .founder-card { max-width: 280px; }
-    .founder-photo { flex: none; aspect-ratio: 4 / 5; min-height: 0; }
+    .founder-card { max-width: 260px; }
+    .founder-photo { height: auto; aspect-ratio: 4 / 5; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
     .footer-bottom { flex-direction: column; gap: 12px; }
   }
