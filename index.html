@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0e0c;
@@ -376,12 +376,37 @@
   .footer-brand-logo {
     margin-bottom: 0;
   }
-  .footer-brand-logo img {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 0 16px rgba(0, 232, 122, 0.18));
+  /* Footer brand lockup — composed from icon + text rather than an image */
+  .footer-brand-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .footer-brand-logo .lockup-icon {
+    width: 72px; height: 72px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 16px rgba(0, 232, 122, 0.25));
+  }
+  .footer-brand-logo .lockup-icon img {
+    width: 100%; height: 100%; display: block;
+  }
+  .footer-brand-logo .lockup-wordmark {
+    font-family: "Montserrat", "Manrope", sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    margin-bottom: 14px;
+  }
+  .footer-brand-logo .lockup-tagline {
+    font-family: "Montserrat", "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
   }
   .footer-brand p { color: var(--ink-soft); max-width: 320px; font-size: 14px; }
   .footer-col h4 {
@@ -623,7 +648,9 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-brand-logo">
-          <img src="/assets/logos/wordmark-tagline-vertical-green.svg" alt="Hortomatix — For the people who grow">
+          <span class="lockup-icon"><img src="/assets/logos/icon-green-footer.png" alt=""></span>
+          <span class="lockup-wordmark">Hortomatix</span>
+          <span class="lockup-tagline">For the people who grow</span>
         </div>
       </div>
       <div class="footer-col">
