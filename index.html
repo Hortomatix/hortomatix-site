@@ -377,8 +377,14 @@
     padding-bottom: 60px; border-bottom: 1px solid var(--line);
   }
   .footer-brand-logo {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
-    font-size: 18px; font-weight: 700;
+    margin-bottom: 0;
+  }
+  .footer-brand-logo img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 16px rgba(0, 232, 122, 0.18));
   }
   .footer-brand p { color: var(--ink-soft); max-width: 320px; font-size: 14px; }
   .footer-col h4 {
@@ -620,10 +626,8 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-brand-logo">
-          <span class="logo-mark"><img src="/assets/logos/icon-white.svg" alt="Hortomatix"></span>
-          Hortomatix
+          <img src="/assets/logos/wordmark-tagline-vertical-white.svg" alt="Hortomatix — For the people who grow">
         </div>
-        <p>Software for the green industry. Built in Sydney for the people who grow.</p>
       </div>
       <div class="footer-col">
         <h4>products</h4>
