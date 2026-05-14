@@ -318,16 +318,16 @@
 
   /* Founder */
   .founder-grid {
-    display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: start;
+    display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: start;
   }
   .founder-card {
     display: flex; flex-direction: column;
   }
   .founder-photo {
     width: 100%;
-    height: 340px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center center;
     display: block;
     border-radius: 8px;
     filter: grayscale(100%) contrast(1.05) brightness(0.95);
@@ -413,8 +413,7 @@
     .flow-grid { grid-template-columns: 1fr; }
     .flow-arrow { transform: rotate(90deg); }
     .founder-grid { grid-template-columns: 1fr; gap: 32px; align-items: start; }
-    .founder-card { max-width: 260px; }
-    .founder-photo { height: auto; aspect-ratio: 4 / 5; }
+    .founder-card { max-width: 280px; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
     .footer-bottom { flex-direction: column; gap: 12px; }
   }
