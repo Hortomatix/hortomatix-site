@@ -94,21 +94,27 @@
     background: radial-gradient(ellipse at 50% 0%, rgba(0, 232, 122, 0.08), transparent 70%);
     pointer-events: none; z-index: 1;
   }
-  .hero::after {
-    content: '';
+  .hero-backdrop {
     position: absolute;
     top: 0; right: 0; bottom: 0;
     width: 55%;
-    background-image: url('/assets/hero-people.jpg');
-    background-size: cover;
-    background-position: center right;
-    background-repeat: no-repeat;
     filter: grayscale(100%) contrast(0.95) brightness(0.85);
-    opacity: 0.30;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 35%, black 100%);
     mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 35%, black 100%);
     pointer-events: none;
     z-index: 0;
+  }
+  .hero-backdrop-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+  }
+  .hero-backdrop-img.is-active {
+    opacity: 0.30;
   }
   .hero > .container { position: relative; z-index: 2; }
   .hero-tag {
@@ -450,7 +456,7 @@
     .nav-inner { padding: 14px 20px; }
     .nav-links { display: none; }
     .hero { padding: 48px 0 60px; }
-    .hero::after { display: none; }
+    .hero-backdrop { display: none; }
     section { padding: 60px 0; }
     h2 { font-size: 32px; }
     .product-row {
@@ -488,6 +494,13 @@
 </nav>
 
 <header class="hero">
+  <div class="hero-backdrop" aria-hidden="true">
+    <div class="hero-backdrop-img is-active" style="background-image:url('/assets/hero-people.jpg');" data-index="0"></div>
+    <div class="hero-backdrop-img" data-src="/assets/hero-people-2.jpg" data-index="1"></div>
+    <div class="hero-backdrop-img" data-src="/assets/hero-people-3.jpg" data-index="2"></div>
+    <div class="hero-backdrop-img" data-src="/assets/hero-people-4.jpg" data-index="3"></div>
+    <div class="hero-backdrop-img" data-src="/assets/hero-people-5.jpg" data-index="4"></div>
+  </div>
   <div class="container">
     <div class="hero-tag">
       <span class="hero-tag-dot"></span>
@@ -670,5 +683,42 @@
   </div>
 </footer>
 
+<script>
+  // Hero backdrop rotation: lazy-load images, then cycle through with crossfade.
+  // Pacing: 10s per image, 2s crossfade.
+  (function () {
+    var slides = document.querySelectorAll('.hero-backdrop-img');
+    if (slides.length < 2) return;
+
+    function lazyLoad() {
+      for (var i = 1; i < slides.length; i++) {
+        var src = slides[i].getAttribute('data-src');
+        if (src) {
+          slides[i].style.backgroundImage = "url('" + src + "')";
+          slides[i].removeAttribute('data-src');
+        }
+      }
+    }
+
+    // Lazy-load on idle, falling back to a delayed timeout on browsers without rIC.
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(lazyLoad, { timeout: 1500 });
+    } else {
+      setTimeout(lazyLoad, 1500);
+    }
+
+    // Honour the user's reduced-motion preference: no rotation.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    var current = 0;
+    setInterval(function () {
+      slides[current].classList.remove('is-active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-active');
+    }, 10000);
+  })();
+</script>
 </body>
 </html>
