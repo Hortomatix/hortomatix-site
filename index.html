@@ -18,21 +18,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0e0c;
     --bg-card: #11161a;
-    --bg-elevated: #161c1f;
-    --bg-glow: #0e1d18;
     --ink: #e8efe8;
     --ink-soft: #a8b3ad;
-    --ink-mute: #6a7570;
-    --ink-dim: #4a554f;
     --green: #00e87a;
-    --green-deep: #00a352;
-    --green-glow: rgba(0, 232, 122, 0.12);
-    --amber: #ffaa3d;
     --line: rgba(232, 239, 232, 0.08);
     --line-strong: rgba(232, 239, 232, 0.16);
     --sans: "Manrope", system-ui, sans-serif;
@@ -45,8 +38,6 @@
         background-attachment: fixed; }
   a { color: inherit; text-decoration: none; }
   .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
-
-.direction-bar .dim { color: var(--ink-mute); }
 
   /* Nav */
   nav {
@@ -74,9 +65,6 @@
     /* Soft green glow to match the rest of the green-glowing accents */
     filter: drop-shadow(0 0 8px rgba(0, 232, 122, 0.35));
   }
-  .nav-links { display: flex; gap: 32px; font-family: var(--mono); font-size: 13px; font-weight: 500; }
-  .nav-links a { color: var(--ink-soft); transition: color 0.15s; }
-  .nav-links a:hover { color: var(--green); }
   .nav-right { display: flex; align-items: center; gap: 16px; }
   .nav-cta {
     font-family: var(--mono); font-size: 13px; font-weight: 500;
@@ -89,7 +77,9 @@
 
   /* Hero */
   .hero {
-    padding: 80px 0 0; position: relative; overflow: hidden;
+    padding: 80px 0 120px; position: relative; overflow: hidden;
+    min-height: calc(100vh - 77px);
+    display: flex; align-items: center;
   }
   .hero::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 600px;
@@ -125,23 +115,6 @@
     opacity: 0.30;
   }
   .hero > .container { position: relative; z-index: 2; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--mono); font-size: 12px;
-    padding: 7px 14px 7px 10px;
-    background: var(--bg-card); border: 1px solid var(--line-strong);
-    border-radius: 100px; margin-bottom: 32px;
-  }
-  .hero-tag-dot {
-    width: 6px; height: 6px; background: var(--green); border-radius: 50%;
-    box-shadow: 0 0 8px var(--green);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    50% { opacity: 0.5; }
-  }
-  .hero-tag-label { color: var(--green); font-weight: 600; }
-  .hero-tag-text { color: var(--ink-soft); }
   .hero h1 {
     font-weight: 700;
     font-size: clamp(44px, 6.5vw, 88px);
@@ -154,331 +127,14 @@
   .hero h1 .accent { color: var(--green); }
   .hero-lede {
     font-size: 19px; color: var(--ink-soft); line-height: 1.55;
-    max-width: 680px; margin-bottom: 40px;
-  }
-  .hero-actions { display: flex; gap: 12px; }
-  .btn-primary {
-    background: var(--green); color: var(--bg);
-    padding: 13px 24px; border-radius: 8px;
-    font-size: 15px; font-weight: 600;
-    display: inline-flex; align-items: center; gap: 8px;
-    transition: all 0.15s;
-    box-shadow: 0 0 0 0 var(--green);
-  }
-  .btn-primary:hover { background: #1aff9a; box-shadow: 0 0 20px rgba(0, 232, 122, 0.3); }
-  .btn-secondary {
-    background: var(--bg-card); color: var(--ink);
-    border: 1px solid var(--line-strong);
-    padding: 13px 24px; border-radius: 8px;
-    font-size: 15px; font-weight: 600;
-    display: inline-flex; align-items: center; gap: 8px;
-    transition: all 0.15s;
-  }
-  .btn-secondary:hover { border-color: var(--green); color: var(--green); }
-
-  /* Terminal block */
-  .terminal {
-    background: var(--bg-card);
-    border: 1px solid var(--line-strong);
-    border-radius: 12px;
-    margin-top: 60px;
-    overflow: hidden;
-    font-family: var(--mono);
-    font-size: 13px;
-  }
-  .terminal-bar {
-    background: var(--bg-elevated);
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--line);
-    display: flex; align-items: center; gap: 8px;
-    color: var(--ink-mute); font-size: 12px;
-  }
-  .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .terminal-dot.r { background: #ff5e5e; }
-  .terminal-dot.y { background: var(--amber); }
-  .terminal-dot.g { background: var(--green); }
-  .terminal-path { margin-left: 12px; }
-  .terminal-body { padding: 24px; }
-  .terminal-line { padding: 4px 0; color: var(--ink-soft); }
-  .terminal-line .prompt { color: var(--green); margin-right: 8px; }
-  .terminal-line .key { color: var(--amber); }
-  .terminal-line .val { color: var(--ink); }
-  .terminal-line .comment { color: var(--ink-dim); }
-  .blink::after {
-    content: '▊'; color: var(--green); margin-left: 4px;
-    animation: blink 1s steps(2) infinite;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  /* Sections */
-  section { padding: 100px 0; border-top: 1px solid var(--line); }
-  #products { padding-top: 40px; padding-bottom: 40px; border-top: none; }
-  #about { padding-top: 40px; border-top: none; }
-  .section-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--mono); font-size: 12px;
-    color: var(--green); margin-bottom: 20px;
-  }
-  .section-eyebrow::before {
-    content: '> '; color: var(--ink-mute);
-  }
-  h2 {
-    font-size: 44px; font-weight: 700;
-    line-height: 1.1; letter-spacing: -0.025em;
-    color: var(--ink); margin-bottom: 20px; max-width: 800px;
-  }
-  h2 .glow { color: var(--green); }
-  .section-sub {
-    font-size: 18px; color: var(--ink-soft); max-width: 720px;
-    line-height: 1.55; margin-bottom: 60px;
-  }
-
-  /* Products as schematic rows */
-  .product-row {
-    display: grid;
-    grid-template-columns: 60px 220px 1fr 140px 120px;
-    gap: 32px;
-    padding: 32px 0;
-    border-top: 1px solid var(--line);
-    align-items: start;
-    font-family: var(--mono);
-    transition: background 0.15s;
-  }
-  .product-row:last-child { border-bottom: 1px solid var(--line); }
-  .product-row:hover { background: rgba(0, 232, 122, 0.02); }
-  .product-id {
-    font-size: 12px; color: var(--ink-mute);
-    padding-top: 4px;
-  }
-  .product-name-block {
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  .product-name {
-    font-family: var(--sans);
-    font-size: 26px; font-weight: 700;
-    letter-spacing: -0.02em; color: var(--ink); line-height: 1.1;
-  }
-  .product-sub-label {
-    font-size: 12px; color: var(--ink-mute);
-  }
-  .product-desc {
-    font-family: var(--sans);
-    font-size: 15px; line-height: 1.55; color: var(--ink-soft);
-  }
-  .product-link {
-    font-size: 12px; color: var(--green);
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 12px;
-  }
-  .product-link::before { content: '→'; }
-  .product-status {
-    display: flex; flex-direction: column; gap: 6px;
-    font-size: 11px;
-  }
-  .product-status-label { color: var(--ink-mute); }
-  .product-status-val {
-    display: inline-flex; align-items: center; gap: 6px;
-    color: var(--ink); font-weight: 600;
-  }
-  .product-status-val.live { color: var(--green); }
-  .product-status-val.live::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green); box-shadow: 0 0 6px var(--green);
-  }
-  .product-status-val.beta { color: var(--green); }
-  .product-status-val.beta::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green); box-shadow: 0 0 6px var(--green);
-    animation: betaPulse 2s ease-in-out infinite;
-  }
-  @keyframes betaPulse {
-    50% { opacity: 0.4; }
-  }
-  .product-status-val.dev { color: var(--amber); }
-  .product-status-val.dev::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--amber);
-  }
-  .product-status-val.coming { color: var(--ink-mute); }
-  .product-status-val.coming::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--ink-mute);
-  }
-  .product-layer {
-    font-size: 11px; color: var(--ink-mute);
-    text-align: right;
-  }
-  .product-layer-val { color: var(--ink-soft); }
-
-  /* Data flow diagram */
-  .data-flow {
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 40px;
-    margin-top: 60px;
-  }
-  .data-flow h3 {
-    font-size: 20px; font-weight: 600; letter-spacing: -0.015em;
-    margin-bottom: 24px;
-  }
-  .flow-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr) auto 1fr;
-    gap: 16px; align-items: center;
-  }
-  .flow-box {
-    background: var(--bg-elevated);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 16px;
-    font-family: var(--mono); font-size: 12px;
-    text-align: center;
-  }
-  .flow-box-label { color: var(--green); display: block; margin-bottom: 4px; }
-  .flow-box-name { color: var(--ink); font-weight: 600; }
-  .flow-arrow {
-    font-family: var(--mono); color: var(--ink-mute);
-    text-align: center; font-size: 18px;
-  }
-  .flow-output {
-    background: var(--green-glow); border-color: var(--green);
-    color: var(--green);
-  }
-  .flow-output .flow-box-name { color: var(--green); }
-
-  /* Founder */
-  .founder-grid {
-    display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: start;
-  }
-  .founder-card {
-    display: flex; flex-direction: column;
-  }
-  .founder-photo {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-    border-radius: 8px;
-    filter: grayscale(100%) contrast(1.05) brightness(0.95);
-  }
-  .founder-caption {
-    margin-top: 16px;
-    font-size: 14px;
-    color: var(--ink-soft);
-  }
-  .founder-caption strong {
-    color: var(--green); font-weight: 700; display: block; margin-bottom: 2px;
-    font-size: 15px;
-  }
-  .founder-caption .role {
-    font-family: var(--mono); font-size: 12px;
-    color: var(--ink-mute);
-  }
-
-  .founder-body p {
-    font-size: 18px; line-height: 1.6; color: var(--ink-soft);
-    margin-bottom: 20px;
-  }
-  .founder-body strong { color: var(--ink); font-weight: 600; }
-  .founder-pull {
-    border-left: 2px solid var(--green);
-    padding-left: 20px;
-    font-size: 20px; line-height: 1.4; font-weight: 500;
-    color: var(--ink); margin: 28px 0;
-  }
-
-  /* Footer */
-  footer {
-    background: var(--bg-card);
-    border-top: 1px solid var(--line);
-    padding: 80px 0 32px;
-    position: relative; overflow: hidden;
-  }
-  footer::before {
-    content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
-    width: 800px; height: 800px;
-    background: radial-gradient(circle, rgba(0, 232, 122, 0.04), transparent 70%);
-    pointer-events: none;
-  }
-  .footer-content { position: relative; }
-  .footer-top {
-    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px;
-    padding-bottom: 60px; border-bottom: 1px solid var(--line);
-  }
-  .footer-brand-logo {
-    margin-bottom: 0;
-  }
-  /* Footer brand lockup — composed from icon + text rather than an image */
-  .footer-brand-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0;
-  }
-  .footer-brand-logo .lockup-icon {
-    width: 88px; height: 88px;
-    margin-bottom: -8px;
-    filter: drop-shadow(0 0 16px rgba(0, 232, 122, 0.25));
-  }
-  .footer-brand-logo .lockup-icon img {
-    width: 100%; height: 100%; display: block;
-  }
-  .footer-brand-logo .lockup-wordmark {
-    font-family: "Montserrat", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: 42px;
-    line-height: 1;
-    letter-spacing: -0.025em;
-    color: #ffffff;
-    margin-bottom: 2px;
-  }
-  .footer-brand-logo .lockup-tagline {
-    font-family: "Montserrat", "Manrope", sans-serif;
-    font-weight: 500;
-    font-size: 9px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--green);
-  }
-  .footer-brand p { color: var(--ink-soft); max-width: 320px; font-size: 14px; }
-  .footer-col h4 {
-    font-family: var(--mono); font-size: 11px;
-    color: var(--green); font-weight: 600;
-    margin-bottom: 16px;
-  }
-  .footer-col h4::before { content: '// '; color: var(--ink-mute); }
-  .footer-col a {
-    display: block; font-size: 14px;
-    color: var(--ink-soft); margin-bottom: 10px;
-  }
-  .footer-col a:hover { color: var(--green); }
-  .footer-bottom {
-    padding-top: 24px; display: flex; justify-content: space-between;
-    font-family: var(--mono); font-size: 12px; color: var(--ink-mute);
+    max-width: 680px;
   }
 
   @media (max-width: 860px) {
     .container, .nav-inner { padding: 0 20px; }
     .nav-inner { padding: 14px 20px; }
-    .nav-links { display: none; }
-    .hero { padding: 48px 0 60px; }
+    .hero { padding: 48px 0 60px; min-height: 0; }
     .hero-backdrop { display: none; }
-    section { padding: 60px 0; }
-    h2 { font-size: 32px; }
-    .product-row {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 28px 0;
-    }
-    .product-id, .product-layer { display: none; }
-    .flow-grid { grid-template-columns: 1fr; }
-    .flow-arrow { transform: rotate(90deg); }
-    .founder-grid { grid-template-columns: 1fr; gap: 32px; align-items: start; }
-    .founder-card { max-width: 280px; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .footer-bottom { flex-direction: column; gap: 12px; }
   }
 </style>
 </head>
@@ -490,11 +146,6 @@
       <span class="logo-mark"><img src="/assets/logos/icon-green-nav.png" alt="Hortomatix"></span>
       Hortomatix
     </a>
-    <div class="nav-links">
-      <a href="#products">products</a>
-      <a href="#about">company</a>
-      <a href="#contact">contact</a>
-    </div>
     <div class="nav-right">
       <a href="mailto:info@hortomatix.com.au?subject=Hortomatix%20-%20Get%20in%20touch" class="nav-cta">Get in touch</a>
     </div>
@@ -510,186 +161,12 @@
     <div class="hero-backdrop-img" data-src="/assets/hero-people-5.jpg" data-index="4"></div>
   </div>
   <div class="container">
-    <div class="hero-tag">
-      <span class="hero-tag-dot"></span>
-      <span class="hero-tag-label">SYS.STATUS</span>
-      <span class="hero-tag-text">Foliar in private beta · Florabook in development</span>
-    </div>
     <h1>Intelligent tools for the <span class="accent">people who grow.</span></h1>
     <p class="hero-lede">
       Hortomatix builds software for horticulture, landscaping, wholesale trade, retail gardening, and professional grounds management. Four products, each designed to solve a real problem for the people who use it.
     </p>
-    <div class="hero-actions">
-      <a href="#products" class="btn-primary">See what we build →</a>
-      <a href="mailto:info@hortomatix.com.au?subject=Hortomatix%20-%20Get%20in%20touch" class="btn-secondary">Get in touch</a>
-    </div>
-
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot r"></span>
-        <span class="terminal-dot y"></span>
-        <span class="terminal-dot g"></span>
-        <span class="terminal-path">~/hortomatix · platform status</span>
-      </div>
-      <div class="terminal-body">
-        <div class="terminal-line"><span class="prompt">›</span> products</div>
-        <div class="terminal-line"><span class="comment">// what we're building, where each one's up to</span></div>
-        <div class="terminal-line"><span class="key">→ foliar</span>     <span class="val">for wholesale nurseries</span>            <span style="color:var(--green)">[BETA]</span></div>
-        <div class="terminal-line"><span class="key">→ florabook</span>  <span class="val">for home gardeners</span>                <span style="color:var(--amber)">[DEV]</span></div>
-        <div class="terminal-line"><span class="key">→ hortom8</span>    <span class="val">for grounds teams</span>                 <span style="color:var(--amber)">[DEV]</span></div>
-        <div class="terminal-line"><span class="key">→ floradex</span>   <span class="val">for the green industry</span>            <span style="color:var(--ink-mute)">[COMING]</span></div>
-        <div class="terminal-line"><span class="prompt">›</span> <span class="blink"></span></div>
-      </div>
-    </div>
   </div>
 </header>
-
-<section id="products">
-  <div class="container">
-    <div class="section-eyebrow">// what we build</div>
-    <h2>Four products. <span class="glow">Four kinds of people.</span></h2>
-    <p class="section-sub">
-      Each one solves a specific, documented problem for the people who use it. That could be a wholesale nursery owner, a home gardener, or a grounds manager at a council or school.
-    </p>
-
-    <div>
-      <div class="product-row">
-        <div class="product-id">[01]</div>
-        <div class="product-name-block">
-          <div class="product-name">Foliar</div>
-          <div class="product-sub-label">/products/foliar</div>
-        </div>
-        <div>
-          <div class="product-desc">For wholesale nurseries and landscape supply yards. Foliar replaces PDF price lists and phone orders with a live trade portal. Trade buyers see what's actually in stock; suppliers finally see their own business clearly.</div>
-          <a href="https://foliar.com.au" class="product-link">foliar.com.au</a>
-        </div>
-        <div class="product-status">
-          <div class="product-status-label">STATUS</div>
-          <div class="product-status-val beta">PRIVATE BETA</div>
-        </div>
-        <div class="product-layer">
-          <div>LAYER</div>
-          <div class="product-layer-val">wholesale</div>
-        </div>
-      </div>
-
-      <div class="product-row">
-        <div class="product-id">[02]</div>
-        <div class="product-name-block">
-          <div class="product-name">Florabook</div>
-          <div class="product-sub-label">/products/florabook</div>
-        </div>
-        <div>
-          <div class="product-desc">For home gardeners. Florabook answers the question every gardener actually has: <em>what should I plant, and where can I actually buy it today?</em> Describe what you want in your own words; get suggestions linked to live stock at real nurseries near you.</div>
-          <a href="https://florabook.com.au" class="product-link">florabook.com.au</a>
-        </div>
-        <div class="product-status">
-          <div class="product-status-label">STATUS</div>
-          <div class="product-status-val dev">IN DEV</div>
-        </div>
-        <div class="product-layer">
-          <div>LAYER</div>
-          <div class="product-layer-val">retail</div>
-        </div>
-      </div>
-
-      <div class="product-row">
-        <div class="product-id">[03]</div>
-        <div class="product-name-block">
-          <div class="product-name">HortoM8</div>
-          <div class="product-sub-label">/products/hortom8</div>
-        </div>
-        <div>
-          <div class="product-desc">For grounds teams at councils, schools, universities, and large facilities. HortoM8 takes the guesswork out of grounds management, adapting to weather, soil, and operational constraints so the team can plan rather than react. Vendor-neutral, built around real maintenance work.</div>
-        </div>
-        <div class="product-status">
-          <div class="product-status-label">STATUS</div>
-          <div class="product-status-val dev">IN DEV</div>
-        </div>
-        <div class="product-layer">
-          <div>LAYER</div>
-          <div class="product-layer-val">institutional</div>
-        </div>
-      </div>
-
-      <div class="product-row">
-        <div class="product-id">[04]</div>
-        <div class="product-name-block">
-          <div class="product-name">Floradex</div>
-          <div class="product-sub-label">/products/floradex</div>
-        </div>
-        <div>
-          <div class="product-desc">For the businesses, brands, and analysts trying to understand the Australian green industry. Floradex turns the patterns we see into clear, useful market reports covering regional demand, seasonal trends, supply gaps, and category performance. Honest research for an industry that's never had it.</div>
-        </div>
-        <div class="product-status">
-          <div class="product-status-label">STATUS</div>
-          <div class="product-status-val coming">COMING</div>
-        </div>
-        <div class="product-layer">
-          <div>LAYER</div>
-          <div class="product-layer-val">intelligence</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="container">
-    <div class="section-eyebrow">// company</div>
-    <h2>Built by people who've <span class="glow">done the work.</span></h2>
-    <div class="founder-grid">
-      <div class="founder-card">
-        <img src="/assets/founder-clark-card.jpg?v=3" alt="Robert Clark, founder of Hortomatix" class="founder-photo">
-        <p class="founder-caption">
-          <strong>Robert Clark</strong>
-          <span class="role">founder &amp; director</span>
-        </p>
-      </div>
-      <div class="founder-body">
-        <p>Hortomatix was founded by Robert Clark, a landscape gardener with direct operational experience across every layer of the green industry: institutional grounds maintenance, wholesale supply, retail trade, and running a landscaping business.</p>
-        <div class="founder-pull">
-          We build software the industry actually wants to use, because we've done the work it's designed to support.
-        </div>
-        <p>That domain knowledge informs every product decision: <strong>features that solve genuine pain points, vendor-neutral integrations, honest commercial terms, and platform neutrality as a long-term commitment.</strong></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer id="contact">
-  <div class="container footer-content">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-brand-logo">
-          <span class="lockup-icon"><img src="/assets/logos/icon-green-footer.png" alt=""></span>
-          <span class="lockup-wordmark">Hortomatix</span>
-          <span class="lockup-tagline">For the people who grow</span>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>products</h4>
-        <a href="#products">Foliar</a>
-        <a href="#products">Florabook</a>
-        <a href="#products">HortoM8</a>
-        <a href="#products">Floradex</a>
-      </div>
-      <div class="footer-col">
-        <h4>company</h4>
-        <a href="#about">About</a>
-      </div>
-      <div class="footer-col">
-        <h4>contact</h4>
-        <a href="mailto:info@hortomatix.com.au">info@hortomatix.com.au</a>
-        <a href="mailto:info@hortomatix.com.au?subject=Hortomatix%20-%20Book%20a%20demo">Book a demo</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© Hortomatix Pty Ltd · 2026</span>
-      <span>SYD / AU</span>
-    </div>
-  </div>
-</footer>
 
 <script>
   // Hero backdrop rotation: lazy-load images, then cycle through with crossfade.
